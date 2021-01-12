@@ -13,6 +13,8 @@ public class ScoreManager : MonoBehaviour
 
     [Header("丟中音效")]
     public AudioClip soundIn;
+    [Header("人物動畫")]
+    public Animator Ani;
 
     private AudioSource aud;
 
@@ -23,14 +25,16 @@ public class ScoreManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "內臟"&&other.transform.position.y>2)
+        if (other.tag == "內臟"&&other.transform.position.y>1)
         {
             Addscore();
+            
         }
 
         if (other.transform.root.name == "Player")
         {
             scoreIn = 3;
+            Ani.SetTrigger("fall觸發器");
         }
     }
     private void OnTriggerExit(Collider other)
